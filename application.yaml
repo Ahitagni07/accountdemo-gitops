@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: account-demo
+
+spec:
+
+  project: default
+
+  source:
+    repoURL: https://github.com/Ahitagni07/accountdemo-gitops.git
+    targetRevision: main
+    path: .
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
